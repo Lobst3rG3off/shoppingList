@@ -3,6 +3,7 @@ body {
   display: grid;
   align-items: start;
   justify-items: center;
+  background: rebeccapurple;
 }
 
 /* Shopping Form */
