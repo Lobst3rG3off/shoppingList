@@ -29,6 +29,7 @@ function displayItems() {
     .map(
       item => `<li class="shopping-item">
       <input 
+      value="${item.id}"
       type="checkbox">
       <span class="itemName">${item.name}</span>
       <button 
@@ -62,6 +63,10 @@ function deleteItem(id) {
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
 
+function markAsComplete(id) {
+  console.log('marking as complete', id);
+}
+
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
@@ -69,6 +74,9 @@ list.addEventListener('itemsUpdated', mirrorToLocalStorage);
 list.addEventListener('click', function(e) {
   if (e.target.matches('button')) {
     deleteItem(parseInt(e.target.value));
+  }
+  if (e.target.matches('input[type="checkbox"]')) {
+    markAsComplete(parseInt(e.target.value));
   }
 });
 restoreFromLocalStorage();
