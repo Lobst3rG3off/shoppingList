@@ -51,8 +51,17 @@ function restoreFromLocalStorage() {
   }
 }
 
+function deleteItem(id) {
+  console.log('delete item');
+}
+
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
 list.addEventListener('itemsUpdated', mirrorToLocalStorage);
-
+// event delegation, listening for a click on the list UL but then delegate the click over to the button if that was clicked.
+list.addEventListener('click', function(e) {
+  if (e.target.matches('button')) {
+    deleteItem();
+  }
+});
 restoreFromLocalStorage();
